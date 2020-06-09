@@ -45,7 +45,7 @@ $('.image-upload-wrap').bind('dragleave', function() {
 // More API functions here:
 // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 // the link to your model provided by Teachable Machine export panel
-const URL = "https://teachablemachine.withgoogle.com/models/1US-Bt-Wb/";
+const URL = "model/";
 let model, webcam, labelContainer, maxPredictions;
 // Load the image model and setup the webcam
 async function init() {
@@ -74,6 +74,7 @@ async function predict() {
     });
     for (let i = 0; i < 3; i++) {
         const select = prediction[i].className.toLowerCase().trim();
+        console.log(select)
         const classPrediction =
             dogData[select].name + "<br>"+
             "<img src='"+dogData[select].url + "' class='dog-image'>" +
