@@ -73,10 +73,11 @@ async function predict() {
         return numberTo(b.probability) - numberTo(a.probability);
     });
     for (let i = 0; i < 3; i++) {
+        const select = prediction[i].className.toLowerCase().trim();
         const classPrediction =
-            dogData[prediction[i].className.toLowerCase()].name + "<br>"+
-            "<img src='"+dogData[prediction[i].className.toLowerCase()].url + "' class='dog-image'>" +
-            (prediction[i].probability * 100).toFixed(0) +  "%<br>"+dogData[prediction[i].className.toLowerCase()].detail
+            dogData[select].name + "<br>"+
+            "<img src='"+dogData[select].url + "' class='dog-image'>" +
+            (prediction[i].probability * 100).toFixed(0) +  "%<br>"+dogData[select].detail
             ;
         labelContainer.childNodes[i].innerHTML = classPrediction;
     }
