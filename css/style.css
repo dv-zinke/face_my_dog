@@ -9,7 +9,11 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
-
+.dog-image {
+    width:200px;
+    height: 200px;
+    border-radius: 200px;
+}
 .file-upload-btn {
     width: 100%;
     margin: 0;

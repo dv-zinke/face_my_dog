@@ -74,7 +74,10 @@ async function predict() {
     });
     for (let i = 0; i < 3; i++) {
         const classPrediction =
-            "<img src='"+dogData[prediction[i].className.toLowerCase()].url + "'>: " + (prediction[i].probability * 100).toFixed(0);
+            dogData[prediction[i].className.toLowerCase()].name + "<br>"+
+            "<img src='"+dogData[prediction[i].className.toLowerCase()].url + "' class='dog-image'>" +
+            (prediction[i].probability * 100).toFixed(0) +  "%<br>"+dogData[prediction[i].className.toLowerCase()].detail
+            ;
         labelContainer.childNodes[i].innerHTML = classPrediction;
     }
 }
