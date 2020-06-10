@@ -12,7 +12,7 @@ function getDogData(){
 }
 
 function readURL(input) {
-    if (input.files && input.files[0]) {
+    if (input.files && input.fils[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
             $('.image-upload-wrap').hide();
@@ -42,31 +42,24 @@ $('.image-upload-wrap').bind('dragleave', function() {
     $('.image-upload-wrap').removeClass('image-dropping');
 });
 
-// More API functions here:
-// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
-// the link to your model provided by Teachable Machine export panel
 const URL = "model/";
 let model, webcam, labelContainer, maxPredictions;
 // Load the image model and setup the webcam
 async function init() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
-    // load the model and metadata
-    // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-    // or files from your local hard drive
-    // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
-    // Convenience function to setup a webcam
+
 
     labelContainer = document.getElementById("label-container");
-    for (let i = 0; i < maxPredictions; i++) { // and class labels
+    for (let i = 0; i < maxPredictions; i++) {
         labelContainer.appendChild(document.createElement("div"));
     }
 }
-// run the webcam image through the image model
+
 async function predict() {
-    // predict can take in an image, video or canvas html element
     var image = document.getElementById("face-image");
     const prediction = await model.predict(image, false);
     prediction.sort(function(a,b){
@@ -74,7 +67,6 @@ async function predict() {
     });
     for (let i = 0; i < 3; i++) {
         const select = prediction[i].className.toLowerCase().trim();
-        console.log(select)
         const classPrediction =
             dogData[select].name + "<br>"+
             "<img src='"+dogData[select].url + "' class='dog-image'>" +
