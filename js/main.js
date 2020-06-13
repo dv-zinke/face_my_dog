@@ -12,7 +12,7 @@ function getDogData(){
 }
 
 function readURL(input) {
-    if (input.files && input.fils[0]) {
+    if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
             $('.image-upload-wrap').hide();
@@ -63,7 +63,7 @@ async function predict() {
     var image = document.getElementById("face-image");
     const prediction = await model.predict(image, false);
     prediction.sort(function(a,b){
-        return numberTo(b.probability) - numberTo(a.probability);
+        return numberToFixed(b.probability) - numberToFixed(a.probability);
     });
     for (let i = 0; i < 3; i++) {
         const select = prediction[i].className.toLowerCase().trim();
@@ -76,7 +76,7 @@ async function predict() {
     }
 }
 
-function numberTo(num){
+function numberToFixed(num){
     return (num * 100).toFixed(0)
 }
 
